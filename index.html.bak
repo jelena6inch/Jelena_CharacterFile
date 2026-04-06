@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelena Jhang — Character File No.001</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+TC:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F0EDE8;
+            --navy: #1E3560;
+            --navy-light: #2D4A7A;
+            --gold: #C4973A;
+            --gold-light: #E8D4A0;
+            --light-bg: #E8EDF5;
+            --divider: #D0C8BE;
+            --warm-gray: #8A8070;
+            --text-dark: #2C2825;
+            --white: #FFFFFF;
+            --accent-green: #2D6A4A;
+            --accent-purple: #5A3A7A;
+            --accent-red: #8A2A2A;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #dcd7cf;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .card-container {
+            background-color: var(--bg);
+            width: 1000px;
+            max-width: 100%;
+            position: relative;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--navy);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Border Details */
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px solid var(--gold);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            z-index: 11;
+        }
+        .dot.tl { top: 3px; left: 3px; }
+        .dot.tr { top: 3px; right: 3px; }
+        .dot.bl { bottom: 3px; left: 3px; }
+        .dot.br { bottom: 3px; right: 3px; }
+
+        /* Grid Pattern */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, #E8E4DC 1px, transparent 1px),
+                linear-gradient(to bottom, #E8E4DC 1px, transparent 1px);
+            background-size: 36px 36px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 30px 48px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .id-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #7A99CC;
+            letter-spacing: 2px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tags span {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #5577AA;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #AABBD0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .motto {
+            font-size: 18px;
+            color: #AABBD0;
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        main {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 40px;
+            padding: 40px 48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 2px;
+            background-color: var(--navy-light);
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        /* Left Column */
+        .profile-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .avatar-container {
+            width: 160px;
+            height: 200px;
+            border: 3px solid var(--navy);
+            background-color: var(--gold-light);
+            position: relative;
+            padding: 2px;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .role-title {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: var(--warm-gray);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .achievement {
+            color: var(--navy-light);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .mini-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        .mini-badge {
+            color: var(--white);
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Profile List */
+        .profile-list {
+            list-style: none;
+        }
+
+        .profile-list li {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+        }
+
+        .profile-list .label {
+            color: var(--gold);
+            font-weight: 700;
+            width: 80px;
+            flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Stats */
+        .stat-item {
+            margin-bottom: 18px;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .stat-grade {
+            background-color: var(--navy);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 1px 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-bar-bg {
+            height: 10px;
+            background-color: var(--light-bg);
+            width: 100%;
+            position: relative;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background-color: var(--navy-light);
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1);
+        }
+
+        .stat-bar-tip {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 8px;
+        }
+
+        .stat-note {
+            font-size: 12px;
+            color: var(--warm-gray);
+            margin-top: 4px;
+        }
+
+        /* Right Column */
+        .backstory p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        .special-ability {
+            background-color: var(--navy);
+            border-left: 6px solid var(--gold);
+            padding: 24px;
+            color: var(--white);
+            margin: 30px 0;
+        }
+
+        .ability-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .ability-desc {
+            color: #AABBD0;
+            font-size: 14px;
+        }
+
+        .future-quest {
+            padding: 20px 0;
+        }
+
+        .future-quest blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--navy);
+            font-style: italic;
+            line-height: 1.4;
+            border-top: 4px solid var(--gold);
+            padding-top: 20px;
+        }
+
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .keyword-tag {
+            border: 1px solid var(--navy-light);
+            padding: 4px 12px;
+            font-size: 13px;
+            color: var(--navy-light);
+            transition: all 0.3s;
+        }
+
+        .keyword-tag:hover {
+            background-color: var(--navy-light);
+            color: var(--white);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--divider);
+            color: var(--warm-gray);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: #7A99CC;
+            text-align: center;
+            padding: 12px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            border-top: 1px solid var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            .card-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="dot tl"></div>
+        <div class="dot tr"></div>
+        <div class="dot bl"></div>
+        <div class="dot br"></div>
+        <div class="grid-overlay"></div>
+
+        <header>
+            <div class="header-top">
+                <div class="id-num">CHARACTER FILE — No. 001</div>
+                <div class="tags">
+                    <span>Logistics</span>
+                    <span>Japanese</span>
+                    <span>AI Tools</span>
+                </div>
+            </div>
+            <h1>Jelena Jhang</h1>
+            <p class="motto">用語言理解世界，用工具讓工作更好。</p>
+        </header>
+
+        <main>
+            <!-- Left Side -->
+            <div class="left-col">
+                <section class="profile-card">
+                    <div class="avatar-container">
+                        <img id="avatar" src="" alt="Jelena Jhang Profile">
+                    </div>
+                    <div class="profile-info">
+                        <h2>張 姵 涵</h2>
+                        <div class="role-title">Logistics<br>Coordinator</div>
+                        <div class="location">Taichung, Taiwan</div>
+                        <div class="achievement">JLPT N1 ★ 2025</div>
+                        <div class="mini-badges">
+                            <div class="mini-badge" style="background-color: var(--gold);">S 日語</div>
+                            <div class="mini-badge" style="background-color: var(--accent-green);">A 物流</div>
+                            <div class="mini-badge" style="background-color: var(--navy-light);">A 溝通</div>
+                            <div class="mini-badge" style="background-color: var(--accent-purple);">A 文件</div>
+                            <div class="mini-badge" style="background-color: var(--accent-red);">A+ 解決</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="section-title">PROFILE</div>
+                    <ul class="profile-list">
+                        <li><span class="label">Role</span> 物流業務助理（在職 3 年）</li>
+                        <li><span class="label">Lang</span> 中文 / 日文 N1 / English</li>
+                        <li><span class="label">Study</span> 福岡短期交換研修</li>
+                        <li><span class="label">Tools</span> LINE Bot / AI辨識 / GAS</li>
+                        <li><span class="label">Type</span> 細心・溫柔・負責・耐心</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="section-title">ABILITY STATS</div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <span class="stat-label">日語能力</span>
+                            <span class="stat-grade" style="background-color: var(--gold);">S</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" data-progress="96%" style="background-color: var(--navy-light);"></div>
+                            <div class="stat-bar-tip" style="right: 4%; background-color: var(--gold);"></div>
+                        </div>
+                        <p class="stat-note">JLPT N1・福岡研修・日商書信</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <span class="stat-label">物流實務</span>
+                            <span class="stat-grade" style="background-color: var(--accent-green);">A</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" data-progress="85%" style="background-color: var(--navy-light);"></div>
+                            <div class="stat-bar-tip" style="right: 15%; background-color: var(--accent-green);"></div>
+                        </div>
+                        <p class="stat-note">訂單庫存交期協調 3yr+</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <span class="stat-label">客戶溝通</span>
+                            <span class="stat-grade" style="background-color: var(--navy-light);">A</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" data-progress="90%" style="background-color: var(--navy-light);"></div>
+                            <div class="stat-bar-tip" style="right: 10%; background-color: var(--navy-light);"></div>
+                        </div>
+                        <p class="stat-note">三語往來・細心溝通</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <span class="stat-label">文件整理</span>
+                            <span class="stat-grade" style="background-color: var(--accent-purple);">A</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" data-progress="88%" style="background-color: var(--navy-light);"></div>
+                            <div class="stat-bar-tip" style="right: 12%; background-color: var(--accent-purple);"></div>
+                        </div>
+                        <p class="stat-note">跨語言文件・帳單追蹤</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-header">
+                            <span class="stat-label">解決問題</span>
+                            <span class="stat-grade" style="background-color: var(--accent-red);">A+</span>
+                        </div>
+                        <div class="stat-bar-bg">
+                            <div class="stat-bar-fill" data-progress="92%" style="background-color: var(--navy-light);"></div>
+                            <div class="stat-bar-tip" style="right: 8%; background-color: var(--accent-red);"></div>
+                        </div>
+                        <p class="stat-note">自製 3 個數位工具</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Side -->
+            <div class="right-col">
+                <section class="backstory">
+                    <div class="section-title">BACKSTORY</div>
+                    <p>她的日文不是為了考試而學的。大學三年級，因為喜歡日劇和動漫，開始一句一句地拆解這個語言。靠自學打底，畢業前取得 N2，赴日本福岡短期交換研修一個月，在全日文環境中獨立生活、上課、溝通——語感在那段時間變得更自然、更直覺。</p>
+                    <p>進入職場後，日文成了工作裡真實的工具：承接日本廠商的詢報價、交期確認、異常說明等書信往來；在涉及物流的會議場合，能以日文適時補充說明，確保資訊不因語言落差而失真；更擅長在會後整理重點、追蹤後續，讓溝通真正推進事情進展。2025 年，JLPT N1 正式合格。</p>
+                    <p>她習慣把眼睛放在「哪裡不順」。庫存查詢繁瑣→做了 LINE Bot；報價換算複雜→做了計算器；訂單格式混亂→開發 AI 辨識系統。這些工具不是為了展示技術，而是從真實的麻煩長出來的解法。她不只是執行工作的人，也是會主動讓工作變得更好的人。</p>
+                </section>
+
+                <section class="special-ability">
+                    <div class="ability-name">語言力 × 實務力 × 自製工具力</div>
+                    <div class="ability-desc">遇到問題不只回報，而是想辦法解決它。</div>
+                </section>
+
+                <section class="future-quest">
+                    <div class="section-title">FUTURE QUEST</div>
+                    <blockquote>
+                        找到一個讓語言發光、讓細心被看見的地方，在穩定中持續累積、慢慢變強。
+                    </blockquote>
+                    <div class="keyword-tags">
+                        <div class="keyword-tag">JLPT N1</div>
+                        <div class="keyword-tag">物流3年</div>
+                        <div class="keyword-tag">福岡研修</div>
+                        <div class="keyword-tag">日商往來</div>
+                        <div class="keyword-tag">AI工具</div>
+                        <div class="keyword-tag">台中在地</div>
+                    </div>
+                </section>
+
+                <div class="contact-info">
+                    jelena19961122@gmail.com   ·   0985-496781
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            Jelena Jhang  ·  Character File 2025  ·  Taichung, Taiwan
+        </footer>
+    </div>
+
+    <script>
+        // Set profile photo path
+        document.getElementById('avatar').src = 'character.png';
+
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.stat-bar-fill');
+            bars.forEach(bar => {
+                const progress = bar.getAttribute('data-progress');
+                setTimeout(() => {
+                    bar.style.width = progress;
+                }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
